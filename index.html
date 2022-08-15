@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Library</title>
+</head>
+<body>
+    <div class="bodyContent">
+        <script src="script.js" defer></script>
+        <div class="header">My Library</div>
+        <div class="content">
+            <span class="buttons">
+                <button class="delete">DELETE</button>
+                <button class="new" id="newBtn">NEW</button>
+                <button class="edit">EDIT</button>
+            </span>
+            <div class="cardContainer"></div>
+        </div>
+        
+        <div class="footer">My footer</div>
+    </div>
+    <form class="newForm">
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title">
+        <label for="author">Author</label>
+        <input type="text" id="author" name="author">
+        <label for="year">Year Published</label>
+        <input type="text" id="year" name="year">
+        <label for="readStatus">Have you read it?</label>
+        <input type="text" id="readStatus" name="readStatus">
+        <label for="pages">More information: </label>
+        <input type="text" id="pages" name="paegs">
+
+        <button type="button" class="addBook">Add Book</button>
+    </form>
+</body>
+
+</html>
