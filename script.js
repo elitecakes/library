@@ -9,12 +9,12 @@ const bookCard = document.querySelector('.bookCard');
 
 let myBooks = [];
 
-function Book(title, author, year, readStatus, pages, seriesStatus) {
+function Book(title, author, year, readStatus, info, seriesStatus) {
     this.title = title;
     this.author = author;
     this.year = year;
     this.readStatus = readStatus;
-    this.pages = pages;
+    this.info = info;
     this.seriesStatus = seriesStatus;
 }
 
@@ -49,7 +49,7 @@ function addBookToLibrary(bookobj) {
     if (bookobj.readStatus === true) {
         readBtn.classList.toggle('read-unread');
     }
-    
+
     console.log(bookobj);
     readBtn.innerText = "Read";
     currDiv.appendChild(readBtn);
@@ -81,6 +81,9 @@ function addBookToLibrary(bookobj) {
     infoBtn.addEventListener('click', function () {
         showBookInfo(currDiv);
     });
+
+    //make info div card associated with this bookObj
+    createInfoDiv(bookobj);
 }
 
 function removeBookFromLibrary (bookForDeletion) {
@@ -88,8 +91,12 @@ function removeBookFromLibrary (bookForDeletion) {
     let bookID = bookForDeletion.getAttribute('id');
     //remove from myBooks Array
     myBooks.splice(bookID, 1);
-    //remove from cardContainter 
-    bookForDeletion.remove();
+
+    //remove book from cardContainer and infoDiv from body 
+    let allBookDivs = document.querySelectorAll(`[id="${bookID}"]`);
+    allBookDivs.forEach((item) => {
+        item.remove();
+    });
 }
 
 /*function addSelectorsToBooks() {
@@ -102,10 +109,23 @@ function removeBookFromLibrary (bookForDeletion) {
 
 }*/
 
-function showBookInfo (thisBook) {
-    let infoDiv = document.createElement('div');
+function showBookInfo (thisInfoDiv) {
+    let ref = thisInfoDiv.getAttribute('id');
+    let requestedInfoDiv = document.querySelector(`.mockInfo[id="${ref}"]`);
+    requestedInfoDiv.classList.toggle('not-visible');
+}
 
-    console.log(myBooks[thisBook.getAttribute("id")]);
+function createInfoDiv (bookobj) {
+    let infoDiv = document.createElement('div');
+    infoDiv.innerText = `${bookobj.title}, ${bookobj.author},
+    ${bookobj.year}, ${bookobj.info}`;
+    infoDiv.classList.add('mockInfo');
+    infoDiv.classList.toggle('not-visible');
+    infoDiv.setAttribute('id', myBooks.indexOf(bookobj));
+
+    bod.appendChild(infoDiv);
+
+    console.log(myBooks.indexOf(bookobj));
 }
 
 function readStatus(bookCard) {
@@ -123,6 +143,12 @@ function refreshID () {
         item.setAttribute('id', i);
         i++;
 });
+    let allInfo = document.querySelectorAll('.mockInfo');
+    let j = 0;
+    allInfo.forEach((item) => {
+        item.setAttribute('id', j);
+        j++;
+});
 }
 
 function showForm() {
@@ -135,7 +161,7 @@ function addBook() {
     let author = document.getElementById('author').value;
     let year = document.getElementById('year').value;
     let readStatus = document.getElementById('readStatus').checked;
-    let pages = document.getElementById('pages').value;
+    let info = document.getElementById('info').value;
 
     
     if (title === "" || author === "" ||
@@ -143,7 +169,7 @@ function addBook() {
         return 1;
     }
 
-    return(new Book(title, author, year, readStatus, pages));
+    return(new Book(title, author, year, readStatus, info));
 }
 
 newButton.addEventListener('click', showForm);
@@ -161,8 +187,9 @@ newButton.addEventListener('click', showForm);
 addBookBtn.addEventListener('click', function e() {
     let x = addBookToLibrary(addBook());
     if (x === 1) {
-        e();
+        document.getElementById('year').innerText = "";
     }
+
     showForm();
 });
 
