@@ -9,15 +9,38 @@ body {
     margin: 0px;
 }
 
+.header, .footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .header {
-    background-color: lightgreen;
+    background-color: white;
+    box-shadow: 0px 5px 5px whitesmoke;
+    z-index: 1;
+    text-align: center;
+    text-justify: center;
+    padding: 25px;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .content {
-    background-color: lightblue;
+    background-color: white;
     display: grid;
     grid-template-rows: 1fr 6fr;
     padding: 10px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 0.5fr);
+    grid-template-rows: 1fr;
+    gap: 50px;
+    padding: 0px 50px;
 }
 
 .cardContainer {
@@ -26,16 +49,45 @@ body {
     grid-template-rows: repeat(3, 1fr);
     gap: 5px;
     overflow: scroll;
+    padding: 30px;
 
 }
 
 .bookCard {
-    background-color: white;
+    background-color: whitesmoke;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 15px;;
+    gap: 5px;
+    padding: 10px;
     
 }
 
+.cardBtn {
+    background-color: lightgrey;
+	color: inherit;
+	border: none;
+	padding: 5px 35px;
+	cursor: pointer;
+    border-radius: 5px;
+}
+
+.removeBtn:hover {
+    background-color: red;
+    transition: 0.5s ease-in;
+}
+
+.readBtn {
+    background-color: red;
+}
+
+
+
+
 .footer {
-    background-color: lightgreen;
+    background-color: whitesmoke;
 }
 
 .newForm {
@@ -44,10 +96,10 @@ body {
     margin-left: auto;
     margin-right: auto;
     left: 0;
-    top: 25%;
+    top: 15%;
     right: 0;
     text-align: center;
-    background-color: lightsalmon;
+    background-color: lightgreen;
     height: auto;
     width: 50vw;
     grid-template-columns: 1fr;
@@ -55,6 +107,13 @@ body {
     gap: 15px;
     padding: 15px;
     border-radius: 30px;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.read-unread {
+    background-color: lightgreen;
 }
 
 .visible {
@@ -68,5 +127,5 @@ body {
     -ms-filter: blur(5px);
     filter: blur(2px);
     background-color: #ccc;
-    pointer-events: none;
+    cursor: default;
 }
