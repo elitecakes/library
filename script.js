@@ -81,13 +81,17 @@ function addBookToLibrary(bookobj) {
         
     });
 
+    
+
     //make the card clickable for more info
     infoBtn.addEventListener('click', function () {
         showBookInfo(currDiv);
     });
-
+    
     //make info div card associated with this bookObj
     createInfoDiv(bookobj);
+
+    
 }
 
 function removeBookFromLibrary (bookForDeletion) {
@@ -144,19 +148,54 @@ function removeConfirmation (currDiv) {
 
 function showBookInfo (thisInfoDiv) {
     let ref = thisInfoDiv.getAttribute('id');
-    let requestedInfoDiv = document.querySelector(`.mockInfo[id="${ref}"]`);
+    let requestedInfoDiv = document.querySelector(`.infoDivCont[id="${ref}"]`);
     requestedInfoDiv.classList.toggle('not-visible');
 }
 
 function createInfoDiv (bookobj) {
+    let infoDivCont = document.createElement('div');
     let infoDiv = document.createElement('div');
-    infoDiv.innerText = `${bookobj.title}, ${bookobj.author},
-    ${bookobj.year}, ${bookobj.info}`;
+    //infoDiv.innerText = `${bookobj.title}, ${bookobj.author},
+    //${bookobj.year}, ${bookobj.info}`;
     infoDiv.classList.add('mockInfo');
-    infoDiv.classList.toggle('not-visible');
-    infoDiv.setAttribute('id', myBooks.indexOf(bookobj));
+    infoDivCont.classList.add('infoDivCont');
+    infoDivCont.classList.toggle('not-visible');
+    infoDivCont.setAttribute('id', myBooks.indexOf(bookobj));
 
-    bod.appendChild(infoDiv);
+    const titleHeader =  document.createElement('div');
+    titleHeader.innerText = "Title: "
+    infoDiv.appendChild(titleHeader);
+
+    const infoTitle = document.createElement('div');
+    infoTitle.innerText = `${bookobj.title}`;
+    infoDiv.appendChild(infoTitle);
+
+    const authorHeader =  document.createElement('div');
+    authorHeader.innerText = "Author: "
+    infoDiv.appendChild(authorHeader);
+
+    const infoAuthor = document.createElement('div');
+    infoAuthor.innerText = `${bookobj.author}`;
+    infoDiv.appendChild(infoAuthor);
+
+    const yearHeader =  document.createElement('div');
+    yearHeader.innerText = "Year Published: "
+    infoDiv.appendChild(yearHeader);
+
+    const infoYear = document.createElement('div');
+    infoYear.innerText = `${bookobj.year}`;
+    infoDiv.appendChild(infoYear);
+
+    const infoHeader =  document.createElement('div');
+    infoHeader.innerText = "Information: "
+    infoDiv.appendChild(infoHeader);
+
+    const infoInfo = document.createElement('div');
+    infoInfo.innerText = `${bookobj.info}`;
+    infoDiv.appendChild(infoInfo);
+
+    infoDivCont.appendChild(infoDiv);
+    bod.appendChild(infoDivCont);
 
     console.log(myBooks.indexOf(bookobj));
 }
@@ -231,7 +270,7 @@ const harryPotter = new Book("Harry Potter", "J.K. Rowling", 1994, true, "Good S
 const wheelOfTime = new Book("The Wheel of Time", "Robert Jordan", 1990, false, "I dunno", true);
 
 //click off form to hide it again TODO
-//confirmation box to remove book from library TODO
+//confirmation box to remove book from library DONE
 //show warning explaining why something can't be added "enter a number etc." TODO
 //clean up information panel TODO
 //add edit functionality TODO

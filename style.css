@@ -147,6 +147,12 @@ body {
     background-color: beige;
     border-radius: 15px;
 
+    display: grid;
+    padding: 5px;
+    row-gap: 5px;
+    align-items: center;
+    justify-items: center;
+
 }
 
 .infoList {
