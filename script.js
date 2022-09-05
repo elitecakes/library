@@ -75,7 +75,10 @@ function addBookToLibrary(bookobj) {
     removeBtn.addEventListener('click', function () {
         /*removeBookFromLibrary(currDiv);
         refreshID();*/
+        console.log("currDiv: \n");
+        console.log(currDiv);
         removeConfirmation(currDiv);
+        
     });
 
     //make the card clickable for more info
@@ -119,7 +122,7 @@ function removeConfirmation (currDiv) {
     bod.appendChild(removeContainer);
 
     const removeText = document.createElement('div');
-    removeText.innerText = `Are you sure you want to remove this book?`;
+    removeText.innerText = `Are you sure you want to remove ${currDiv.firstChild.innerText} from your library?`;
     removeContainer.appendChild(removeText);
 
     const removeBtnYes = document.createElement('div');
