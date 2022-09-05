@@ -73,8 +73,9 @@ function addBookToLibrary(bookobj) {
 
     //remove button
     removeBtn.addEventListener('click', function () {
-        removeBookFromLibrary(currDiv);
-        refreshID();
+        /*removeBookFromLibrary(currDiv);
+        refreshID();*/
+        removeConfirmation(currDiv);
     });
 
     //make the card clickable for more info
@@ -108,6 +109,35 @@ function removeBookFromLibrary (bookForDeletion) {
     });
 
 }*/
+function confirmRemoveBookFromLibrary (currDiv) {
+    removeBookFromLibrary(currDiv);
+    refreshID();
+}
+function removeConfirmation (currDiv) {
+    const removeContainer = document.createElement('div');
+    removeContainer.classList.add('removeContainer');
+    bod.appendChild(removeContainer);
+
+    const removeText = document.createElement('div');
+    removeText.innerText = `Are you sure you want to remove this book?`;
+    removeContainer.appendChild(removeText);
+
+    const removeBtnYes = document.createElement('div');
+    removeBtnYes.innerText = "Yep";
+    removeBtnYes.addEventListener('click', function () {
+        confirmRemoveBookFromLibrary(currDiv);
+        bod.removeChild(removeContainer);
+    })
+    removeContainer.appendChild(removeBtnYes);
+
+    const removeBtnNo = document.createElement('div');
+    removeBtnNo.innerText = "Nope";
+    removeBtnNo.addEventListener('click', function () {
+        bod.removeChild(removeContainer);
+    })
+    removeContainer.appendChild(removeBtnNo);
+
+}
 
 function showBookInfo (thisInfoDiv) {
     let ref = thisInfoDiv.getAttribute('id');
@@ -187,7 +217,7 @@ newButton.addEventListener('click', showForm);
 addBookBtn.addEventListener('click', function e() {
     let x = addBookToLibrary(addBook());
     if (x === 1) {
-        document.getElementById('year').innerText = "";
+        showForm();
     }
 
     showForm();
@@ -197,8 +227,11 @@ const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 1937, false, "Pretty 
 const harryPotter = new Book("Harry Potter", "J.K. Rowling", 1994, true, "Good Series", true);
 const wheelOfTime = new Book("The Wheel of Time", "Robert Jordan", 1990, false, "I dunno", true);
 
-
-
+//click off form to hide it again TODO
+//confirmation box to remove book from library TODO
+//show warning explaining why something can't be added "enter a number etc." TODO
+//clean up information panel TODO
+//add edit functionality TODO
 
 
 

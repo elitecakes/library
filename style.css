@@ -154,3 +154,37 @@ body {
     padding-left: 0px;
     margin: 0px;
 }
+
+.removeContainer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+
+    background-color: antiquewhite;
+    height: 30vh;
+    width: 30vh;
+    border-radius: 15px;
+
+    align-items: center;
+    justify-items: center;
+
+}
+
+div.removeContainer > div:first-child {
+    grid-row: 1 / 1;
+    grid-column: 1 / 3;
+    text-align: center;
+}
+
+div.removeContainer > div:not(:first-child) {
+    background-color: pink;
+    padding: 1.5rem;
+    cursor: pointer;
+
+}
